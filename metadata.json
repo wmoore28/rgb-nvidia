@@ -1,0 +1,45 @@
+{
+  "name": "rgb-nvidia",
+  "version": "1.0.0",
+  "author": "Henriette & Sturla",
+  "summary": "A puppet module for installing NVIDIA GPU drivers, which also can detect and install the latest version.",
+  "license": "Apache-2.0",
+  "source": "https://github.com/ntnu-rgb/rgb-nvidia",
+  "issues_url": "https://github.com/ntnu-rgb/rgb-nvidia/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 1.0.0"
+    },
+    {
+      "name": "puppetlabs-chocolatey",
+      "version_requirement": ">= 1.1.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Windows",
+      "operatingsystemrelease": [
+        "7",
+        "8",
+        "10",
+        "Server 2016"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "14.04",
+        "16.04"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.7.0"
+    }
+  ],
+  "description": "This module automates the installation of NVIDIA drivers. The module allows you to specify a specific driver version, but will automatically install the latest driver when declared without paramters."
+}
+

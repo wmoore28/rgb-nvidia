@@ -40,7 +40,7 @@ include nvidia
 **Install a specific version of the NVIDIA drivers:**
 
 ```
-class { nvidia:
+class { 'nvidia':
   version => 375
 }
 ```

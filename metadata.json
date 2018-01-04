@@ -1,6 +1,6 @@
 {
   "name": "rgb-nvidia",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Henriette & Sturla",
   "summary": "A puppet module for installing NVIDIA GPU drivers, which also can detect and install the latest version.",
   "license": "Apache-2.0",

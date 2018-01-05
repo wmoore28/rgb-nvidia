@@ -49,11 +49,11 @@ class { 'nvidia':
 
 ### Parameters
 
-* `version` 
- * Possible values are *'latest'* or any valid *Number*. 
- * Default value is *latest*.
- * Use this parameter if you want to install a specific version of the drivers. 
- * When specifying version, it is recommended to check that the parameter being passed is a valid version that is available in the package repositories. If the version is not available the installation will fail.
+* **version**
+  * Possible values are `latest` or `any valid number`.
+  * Default value is `latest`.
+  * Use this parameter if you want to install a specific version of the drivers.
+  * When specifying version, it is recommended to check that the parameter being passed is a valid version that is available in the package repositories. If the version is not available the installation will fail.
 
 On Ubuntu the latest version is detected with the 'apt-cache pkgnames nvidia-' command paired with a regular expression.
 

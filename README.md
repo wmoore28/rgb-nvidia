@@ -66,9 +66,9 @@ Chocolatey is one of the most popular package repositories for Windows. Read mor
 
 ## Limitations
 * Supported operating systems are:
- * Ubuntu 14.04 and 16.04
- * Other versions of Ubuntu are probably also supported, but have not been tested.
- * Windows 7, 8, 10 and Server 2016. 
+  * Ubuntu 14.04 and 16.04
+  * Other versions of Ubuntu are probably also supported, but have not been tested.
+  * Windows 7, 8, 10 and Server 2016. 
 * Supported puppet versions are 4.7.0 and above.
 
 On Ubuntu, a reboot might be required in order to use the new drivers after they have been installed.

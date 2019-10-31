@@ -34,6 +34,9 @@ class nvidia(Variant[Numeric, Enum['latest']] $version = 'latest') {
   $gpu_vendor = $::facts['gpu_vendor']            # Retrieves GPU vendor by looking up PCI vendor ID
   if $gpu_vendor =~ /NVIDIA/ {                    # Checks that a NVIDIA GPU is present
     case $facts['os']['name'] {                   # Retrieves OS name
+      'CentOS', 'RedHat': {
+        include nvidia::redhat
+      }
       'Ubuntu': {
         class { 'nvidia::ubuntu':                 # If OS is Ubuntu, calls nvidia::ubuntu
           version => $version

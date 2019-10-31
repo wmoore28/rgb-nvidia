@@ -1,20 +1,20 @@
-# 
-# Custom fact to retrieve GPU vendor
-# 
-# @return A string with the name of the GPU vendor. 
 #
-# Returns an empty string if no GPU is detected or the vendor is not recognized. 
+# Custom fact to retrieve GPU vendor
+#
+# @return A string with the name of the GPU vendor.
+#
+# Returns an empty string if no GPU is detected or the vendor is not recognized.
 # If it outputs something else than 'NVIDIA', 'AMD' or '', an error occured.
 # Can only detect a single vendor, will not return multiple vendors even if both AMD and NVIDIA GPUs are present.
 #
 Facter.add(:gpu_vendor) do
   osn = Facter.value(:os)['family']
   case osn
-  when 'Debian'
+  when 'RedHat'
                                        # Checks that facter is run as superuser
     if Facter::Core::Execution.exec('id -u') == '0'
                                        # Checks that pciutils is installed, if not - it is installed
-      if Facter::Core::Execution.exec('apt-get install pciutils -y > /dev/null; echo $?') == '0'
+      if Facter::Core::Execution.exec('rpm -qa | grep pciutils > /dev/null; echo $?') == '0'
                                        # Retrieves all GPUs with PCI vendor-ID
         vendor = Facter::Core::Execution.exec('lspci -nn | grep -i "VGA\|3D\|2D\|DISPLAY"')
         setcode do
@@ -45,7 +45,7 @@ Facter.add(:gpu_vendor) do
          'AMD'
       else
          ''
-      end      
+      end
     end
   else
     setcode do                         # If os familiy is not Debian or windows, output error

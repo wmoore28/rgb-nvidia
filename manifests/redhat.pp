@@ -5,5 +5,11 @@
 class nvidia::redhat (Variant[Numeric, Enum['latest']] $version = 'latest') {
   package { ['nvidia-driver-latest-dkms', 'cuda']:
     ensure => installed,
+    notify => Exec['initialize_gpus'],
+  }
+  
+  exec { 'initialize_gpus':
+    command     => '/bin/nvidia-modprobe',
+    refreshonly => true,
   }
 }

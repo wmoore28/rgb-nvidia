@@ -9,7 +9,7 @@ class nvidia::redhat (Variant[Numeric, Enum['latest']] $version = 'latest') {
   }
   
   exec { 'initialize_gpus':
-    command     => '/bin/nvidia-modprobe',
+    command     => '/bin/nvidia-smi',
     refreshonly => true,
   }
 }

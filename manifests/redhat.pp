@@ -9,7 +9,7 @@ class nvidia::redhat (Variant[Numeric, Enum['latest']] $version = 'latest') {
   }
   
   exec { 'initialize_gpus':
-    command     => '/bin/nvidia-smi',
+    command     => '/bin/nvidia-smi --compute-mode=EXCLUSIVE_PROCESS',
     refreshonly => true,
   }
 }

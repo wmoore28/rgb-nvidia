@@ -3,7 +3,7 @@
 # Desired version of the driver is passed as parameter.
 #
 class nvidia::redhat (Variant[Numeric, Enum['latest']] $version = 'latest') {
-  package { ['nvidia-driver-latest-dkms', 'cuda']:
+  package { 'cuda':
     ensure => installed,
     notify => Exec['initialize_gpus'],
   }

@@ -36,6 +36,32 @@ Facter.add(:gpu_vendor) do
         'Error, facter must be run as superuser'
       end
     end
+  when 'Debian'
+                                       # Checks that facter is run as superuser
+    if Facter::Core::Execution.exec('id -u') == '0'
+                                       # Checks that pciutils is installed, if not - it is installed
+      if Facter::Core::Execution.exec('apt-get install pciutils -y > /dev/null; echo $?') == '0'
+                                       # Retrieves all GPUs with PCI vendor-ID
+        vendor = Facter::Core::Execution.exec('lspci -nn | grep -i "VGA\|3D\|2D\|DISPLAY"')
+        setcode do
+          if vendor.include? "10de"    # Checks if at least one of the GPUs have NVIDIA's PCI vendor id
+            'NVIDIA'
+          elsif vendor.include? "1002" # Checks if at least one of the GPUs have AMD's PCI vendor id
+            'AMD'
+          else
+            ''
+          end
+        end
+      else
+        setcode do                     # Returns an error if apt-get install pciutils returned something else than 0
+          'Error while ensuring that pciutils is installed'
+        end
+      end
+    else
+      setcode do                       # Returns an error if facter was not run as superuser
+        'Error, facter must be run as superuser'
+      end
+    end
   when 'windows'                       # Runs a powershell script that returns GPU vendor
     vendor = Facter::Core::Execution.exec("powershell \"Get-WmiObject Win32_VideoController | Foreach-Object { Write-Host $_.PNPDeviceId }\"")
     setcode do

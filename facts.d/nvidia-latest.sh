@@ -8,7 +8,7 @@
 #
 
 . /etc/os-release
-if [ ${ID_LIKE} = 'debian' ]; then
+if [ "${ID_LIKE}" = 'debian' ]; then
 	packages=$(apt-cache pkgnames nvidia-) 	# Retrieves all packages where the name contains "nvidia-"
 else
 	packages=$(rpm -qa | grep nvidia-) 	# Retrieves all packages where the name contains "nvidia-"

@@ -7,7 +7,7 @@
 # Assumes that the packages will continue to be named in the same manner
 #
 
-packages=$(rpm -qa | grep nvidia-) 	# Retrieves all packages where the name contains "nvidia-"
+packages=$(apt-cache pkgnames nvidia-) 	# Retrieves all packages where the name contains "nvidia-"
 newest=0
 
 versions=$(

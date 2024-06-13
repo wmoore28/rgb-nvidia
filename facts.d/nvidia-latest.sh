@@ -7,7 +7,13 @@
 # Assumes that the packages will continue to be named in the same manner
 #
 
-packages=$(apt-cache pkgnames nvidia-) 	# Retrieves all packages where the name contains "nvidia-"
+. /etc/os-release
+if [ ${ID_LIKE} = 'debian' ]; then
+	packages=$(apt-cache pkgnames nvidia-) 	# Retrieves all packages where the name contains "nvidia-"
+else
+	packages=$(rpm -qa | grep nvidia-) 	# Retrieves all packages where the name contains "nvidia-"
+fi
+
 newest=0
 
 versions=$(
